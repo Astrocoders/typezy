@@ -5,6 +5,12 @@
         "email",
         "user_friends",
         "public_profile"
+      ],
+
+      "profileFields": [
+        "firstName",
+        "lastName",
+        "location"
       ]
     }
   },
