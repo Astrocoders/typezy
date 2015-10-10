@@ -1,26 +1,30 @@
 /*****************************************************************************/
-/* Counter: Event Handlers */
+/* Game: Event Handlers */
 /*****************************************************************************/
 
-Template.Counter.events({
+Template.Game.events({
 });
 
 /*****************************************************************************/
-/* Counter: Helpers */
+/* Game: Helpers */
 /*****************************************************************************/
 
-Template.Counter.helpers({
+Template.Game.helpers({
+  isCounting: function() {
+    return Session.get('counting');
+  }
 });
 
 /*****************************************************************************/
-/* Counter: Lifecycle Hooks */
+/* Game: Lifecycle Hooks */
 /*****************************************************************************/
 
-Template.Counter.onCreated(function(){
+Template.Game.onCreated(function(){
+  Session.set('counting', true);
 });
 
-Template.Counter.onRendered(function(){
+Template.Game.onRendered(function(){
 });
 
-Template.Counter.onDestroyed(function(){
+Template.Game.onDestroyed(function(){
 });

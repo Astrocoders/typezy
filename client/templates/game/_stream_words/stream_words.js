@@ -1,26 +1,32 @@
 /*****************************************************************************/
-/* Game: Event Handlers */
+/* StreamWords: Event Handlers */
 /*****************************************************************************/
 
-Template.Game.events({
+Template.StreamWords.events({
 });
 
 /*****************************************************************************/
-/* Game: Helpers */
+/* StreamWords: Helpers */
 /*****************************************************************************/
 
-Template.Game.helpers({
+Template.StreamWords.helpers({
 });
 
 /*****************************************************************************/
-/* Game: Lifecycle Hooks */
+/* StreamWords: Lifecycle Hooks */
 /*****************************************************************************/
 
-Template.Game.onCreated(function(){
+Template.StreamWords.onCreated(function(){
 });
 
-Template.Game.onRendered(function(){
+Template.StreamWords.onRendered(function(){
 });
 
-Template.Game.onDestroyed(function(){
+Template.StreamWords.onDestroyed(function(){
 });
+
+
+function fillPoints(round) {
+  let shotToFill = $('.oponent').find('path')[round];
+  $(shotToFill).css('fill', 'white');
+}
