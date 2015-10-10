@@ -3,6 +3,9 @@
 /*****************************************************************************/
 
 Template.FriendsList.events({
+  'click .item': function(){
+    FlowRouter.go('game', {_id: this._id});
+  }
 });
 
 /*****************************************************************************/
@@ -10,6 +13,15 @@ Template.FriendsList.events({
 /*****************************************************************************/
 
 Template.FriendsList.helpers({
+  nearbyFriends: function(){
+    var userId = Meteor.userId();
+
+    return Meteor.users.find({
+      _id: {
+        $ne: userId
+      }
+    });
+  }
 });
 
 /*****************************************************************************/
@@ -17,10 +29,15 @@ Template.FriendsList.helpers({
 /*****************************************************************************/
 
 Template.FriendsList.onCreated(function(){
-});
+  App.updateUserLocation();
+  this.autorun((c) => {
+    var coords = Geolocation.latLng({
+      enableHighAccuracy: false
+    });
 
-Template.FriendsList.onRendered(function(){
-});
-
-Template.FriendsList.onDestroyed(function(){
+    if(coords){
+      this.subscribe('nearbyUsers', coords);
+      c.stop();
+    }
+  });
 });

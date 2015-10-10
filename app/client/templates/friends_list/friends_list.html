@@ -1,2 +1,21 @@
 <template name="FriendsList">
+  <div class="flex-container-list">
+    <div class="item">
+      Gabriel Rubens
+    </div>
+
+    <div class="item">
+      Andrew Sanchez
+    </div>
+
+    <div class="item">
+      Guilherme Decampo
+    </div>
+
+    {{#each nearbyUsers}}
+      <div class="item">
+        {{facebook.name}} {{facebook.name}}
+      </div>
+    {{/each}}
+  </div>
 </template>
