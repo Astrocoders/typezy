@@ -3,6 +3,21 @@
 /*****************************************************************************/
 
 Template.Sign.events({
+  'click .button-facebook'(){
+    // Meteor.loginWithFacebook(function(error){
+    //   if(!error){
+        FlowRouter.go('friendsList');
+    //   }
+    // });
+  },
+
+  'click .button-twitter'(){
+    // Meteor.loginWithTwitter(function(error){
+      // if(!error){
+        FlowRouter.go('friendsList');
+      // }
+    // });
+  }
 });
 
 /*****************************************************************************/
