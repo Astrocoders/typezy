@@ -22,7 +22,7 @@ App.setPreference('android-targetSdkVersion', '22');
 App.setPreference('android-minSdkVersion', '19');
 // // Pass preferences for a particular PhoneGap/Cordova plugin
 App.configurePlugin('phonegap-facebook-plugin', {
-  APP_NAME: 'TrendyShop',
+  APP_NAME: 'Typesy',
   APP_ID: '1674830279397877',
   API_KEY: '1c3116b03dffac23d5f1bfd065f570df'
 });
