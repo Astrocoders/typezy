@@ -17,7 +17,7 @@ Meteor.publish('nearbyUsers', function(location){
   }, {
     fields: {
       profile: 1,
-      'facebook.name': 1
+      'services.facebook.name': 1
     }
   });
 });
