@@ -13,7 +13,7 @@ Template.FriendsList.events({
 /*****************************************************************************/
 
 Template.FriendsList.helpers({
-  nearbyFriends: function(){
+  nearbyUsers: function(){
     var userId = Meteor.userId();
 
     return Meteor.users.find({
@@ -34,10 +34,9 @@ Template.FriendsList.onCreated(function(){
     var coords = Geolocation.latLng({
       enableHighAccuracy: false
     });
-
+    
     if(coords){
       this.subscribe('nearbyUsers', coords);
-      c.stop();
     }
   });
 });
