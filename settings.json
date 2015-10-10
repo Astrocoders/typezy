@@ -1,0 +1,25 @@
+{
+  "public": {
+    "facebook": {
+      "permissions": [
+        "email",
+        "user_friends",
+        "public_profile"
+      ],
+
+      "profileFields": [
+        "firstName",
+        "lastName",
+        "location"
+      ]
+    }
+  },
+
+  "cordova": {
+    "com.phonegap.plugins.facebookconnect": {
+      "APP_ID": "1674830279397877",
+      "APP_NAME":  "Typesy",
+      "secret": "1c3116b03dffac23d5f1bfd065f570df"
+    }
+  }
+}

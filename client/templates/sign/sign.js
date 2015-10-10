@@ -3,6 +3,13 @@
 /*****************************************************************************/
 
 Template.Sign.events({
+  'click .button-facebook'(){
+    Meteor.loginWithFacebook(function(error){
+      if(!error){
+        FlowRouter.go('friendsList');
+      }
+    });
+  }
 });
 
 /*****************************************************************************/

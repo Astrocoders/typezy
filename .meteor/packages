@@ -20,5 +20,18 @@ crosswalk
 stylus
 reactive-var
 
+# Routing
 kadira:flow-router
 kadira:blaze-layout
+
+# Styling
+stylus
+fortawesome:fontawesome
+
+# Login system
+accounts-twitter
+accounts-base
+service-configuration
+particle4dev:cordova-fb
+astrocoders:geolocation
+ongoworks:security

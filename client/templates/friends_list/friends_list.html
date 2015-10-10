@@ -1,2 +1,16 @@
 <template name="FriendsList">
+  <div class="flex-container-list">
+    {{#each nearbyUsers}}
+      <div class="item-avatar">
+        <img src="{{profile.avatar}}" alt="user">
+        <div>
+          {{services.facebook.name}}
+        </div>
+      </div>
+    {{else}}
+      <div class="item">
+        No nearby users were found :/
+      </div>
+    {{/each}}
+  </div>
 </template>
