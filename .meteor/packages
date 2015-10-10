@@ -31,3 +31,5 @@ accounts-twitter
 accounts-base
 service-configuration
 particle4dev:cordova-fb
+astrocoders:geolocation
+ongoworks:security
