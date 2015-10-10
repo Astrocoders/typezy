@@ -2,22 +2,46 @@
 * Sign in styles
 */
 
+.sign-in-container 
+  width 100%
+  height 100%
+  display flex
+  flex-direction column-reverse !important
+  background-image url(/images/sign_in_bg.jpg)
+  background-size cover
+  background-position 39% 50%
+
 .logo-container
   flex-grow 1
   display flex
   justify-content center
   align-items center
-      
+  padding 20px
+  .logo
+    max-width 100%
+    
 .login-buttons
   flex-grow 1
-  display flex
-  flex-direction column
   
-  h3 
-    text-align center
-    
-  .button
-    margin-top 5px
-    min-width 160px
-    text-align center
-    font-size 1rem
+  .button-wrapper
+    display flex
+    flex-direction row
+    align-items center
+    justify-content center
+    padding-bottom 20px
+      
+    i
+      padding 17px
+      background-color #4963a1
+      font-size 1.5rem
+      color #fff
+      border-right solid 2px #384A77
+      
+    .button-facebook
+      background-color #4963a1
+
+    .button
+      color #fff
+      min-width 160px
+      text-align center
+      font-size 1rem
