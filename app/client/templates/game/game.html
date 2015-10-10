@@ -1,2 +1,8 @@
 <template name="Game">
+  {{#if counting}}
+    {{> Counter}}
+  {{else}}
+    {{> StreamWords}}
+    {{> Shots}}
+  {{/if}}
 </template>
