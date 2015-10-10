@@ -1,0 +1,11 @@
+{
+  "public": {
+    "facebook": {
+      "permissions": [
+        "email",
+        "user_friends",
+        "public_profile"
+      ]
+    }
+  }
+}
