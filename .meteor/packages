@@ -18,11 +18,16 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 crosswalk
 
+# Routing
 kadira:flow-router
 kadira:blaze-layout
-accounts-facebook
+
+# Styling
+stylus
+fortawesome:fontawesome
+
+# Login system
 accounts-twitter
 accounts-base
 service-configuration
-stylus
-fortawesome:fontawesome
+particle4dev:cordova-fb
