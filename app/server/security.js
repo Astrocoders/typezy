@@ -1,0 +1,1 @@
+Meteor.users.permit(['insert', 'update']).apply();
