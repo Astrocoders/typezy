@@ -200,6 +200,7 @@ function submitWord(word) {
         current.classList.remove("current-word");
         current.classList.add("correct-word-c");
         wordData.correct += 1;
+
     } else {
         current.classList.remove("current-word", "incorrect-word-bg");
         current.classList.add("incorrect-word-c");
@@ -248,46 +249,16 @@ function isTimer(seconds) {
  */
 function goToResult() {
     let gameId = FlowRouter.getParam('_id');
-    if (true) {
+    let game = Games.findOne({});
+    let players = game.players;
+    let winner = _.sortBy(players, 'points')[0];
+
+    if (winner._id === Meteor.userId()) {
         FlowRouter.go('winner', {gameId: gameId})
     } else {
         FlowRouter.go('loser', {gameId: gameId})
     }
 }
-
-
-/**
- * Not using calculateWPM yet
- */
-// function calculateWPM(data) {
-//     let {seconds, correct, incorrect, total, typed} = data;
-//     let min = (seconds / 60);
-//     let wpm = Math.ceil((typed / 5) - (incorrect) / min);
-//     let accuracy = Math.ceil((correct / total) * 100);
-
-//     if (wpm < 0) {wpm = 0;}     // prevent negative wpm from incorrect words
-
-//     // template strings are pretty cool
-//     let results = `<ul id="results">
-//         <li>WPM: <span class="wpm-value">${wpm}</span></li>
-//         <li>Accuracy: <span class="wpm-value">${accuracy}%</span></li>
-//         <li id="results-stats">
-//         Total Words: <span>${total}</span> |
-//         Correct Words: <span>${correct}</span> |
-//         Incorrect Words: <span>${incorrect}</span> |
-//         Characters Typed: <span>${typed}</span>
-//         </li>
-//         </ul>`;
-
-//     $("#word-section")[0].innerHTML = results;
-
-//     // color code accuracy
-//     let wpmClass = $("li:nth-child(2) .wpm-value")[0].classList;
-//     if (accuracy > 80) {wpmClass.add("correct-word-c");}
-//     else { wpmClass.add("incorrect-word-c");}
-
-//     console.log(wordData);
-// }
 
 function typingTest(e) {
     // Char:        Key Code:
@@ -316,9 +287,6 @@ function typingTest(e) {
                 $("#typebox")[0].value = ""; // clear typebox after each word
             }
             wordData.typed += 1; // count each valid character typed
-        }else {
-            // Display typing test results.
-            // calculateWPM(wordData);
         }
     }
 }
