@@ -34,3 +34,5 @@ service-configuration
 particle4dev:cordova-fb
 astrocoders:geolocation
 ongoworks:security
+digilord:faker@=1.0.6
+accounts-password
