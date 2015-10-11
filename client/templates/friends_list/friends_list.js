@@ -34,8 +34,9 @@ Template.FriendsList.onCreated(function(){
     var coords = Geolocation.latLng({
       enableHighAccuracy: false
     });
-    
+
     if(coords){
+      console.log(coords);
       this.subscribe('nearbyUsers', coords);
     }
   });
