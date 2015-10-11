@@ -1,16 +1,23 @@
 <template name="FriendsList">
   <div class="flex-container-list">
-    {{#each nearbyUsers}}
-      <div class="item-avatar">
-        <img src="{{profile.avatar}}" alt="user">
-        <div>
-          {{profile.name}}
-        </div>
+    {{#if isGeolocLoading}}
+      <div class="item">
+        Finding Typezyiers...
       </div>
     {{else}}
-      <div class="item">
-        No nearby users were found :/
-      </div>
-    {{/each}}
+      {{#each nearbyUsers}}
+        <div class="item-avatar">
+          <img src="{{profile.avatar}}" alt="user">
+          <div>
+            {{profile.name}}
+            <button class="start-game">GET TYPEZY</button>
+          </div>
+        </div>
+      {{else}}
+        <div class="item">
+          No nearby users were found :/
+        </div>
+      {{/each}}
+    {{/if}}
   </div>
 </template>

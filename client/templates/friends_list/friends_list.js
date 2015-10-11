@@ -1,10 +1,28 @@
+let isGeolocLoading = new ReactiveVar(true);
 /*****************************************************************************/
 /* FriendsList: Event Handlers */
 /*****************************************************************************/
 
 Template.FriendsList.events({
-  'click .item': function(){
-    FlowRouter.go('game', {_id: this._id});
+  'click .start-game': function() {
+    let opponent = this;
+    let me = Meteor.user();
+    console.log(opponent, me);
+    Games.insert({
+      createdAt: new Date(),
+      rounds: 0,
+      players: [
+        {
+          _id: opponent._id,
+          points: 0
+        },
+        {
+          _id: me._id,
+          points: 0
+        }
+      ],
+      started: false
+    });
   }
 });
 
@@ -13,6 +31,10 @@ Template.FriendsList.events({
 /*****************************************************************************/
 
 Template.FriendsList.helpers({
+  isGeolocLoading: function() {
+    console.log(isGeolocLoading.get());
+    return isGeolocLoading.get();
+  },
   nearbyUsers: function(){
     var userId = Meteor.userId();
 
@@ -37,7 +59,18 @@ Template.FriendsList.onCreated(function(){
 
     if(coords){
       console.log(coords);
-      this.subscribe('nearbyUsers', coords);
+      this.subscribe('nearbyUsers', coords, () => {
+        isGeolocLoading.set(false);
+      });
     }
+  });
+  this.subscribe('lastGame', () => {
+    this.autorun(() => {
+      var game = Games.findOne();
+      console.log(game);
+      if (game && !game.started) {
+        FlowRouter.go('game', {_id: game._id});
+      }
+    });
   });
 });
