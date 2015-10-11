@@ -250,7 +250,7 @@ function goToResult() {
     let gameId = FlowRouter.getParam('_id');
     let game = Games.findOne({});
     let players = game.players;
-    let winner = _.sortBy(players, 'points')[0];
+    let winner = _.sortBy(players, 'points').reverse()[0];
 
     if (winner._id === Meteor.userId()) {
         FlowRouter.go('winner', {gameId: gameId})
