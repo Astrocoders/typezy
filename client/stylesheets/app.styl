@@ -27,6 +27,9 @@ body, #__blaze-root
 .flex-container-col
   flex-direction column
 
+.flex-container-justify-top
+  justify-content flex-start
+
 .flex-container-list
   display flex
   width 100%
@@ -34,12 +37,18 @@ body, #__blaze-root
   flex-direction column
   justify-content flex-start
   align-items flex-start
-  
+
   .item
     padding 20px
     width 100%
     font-size 2rem
     border-bottom: 1px #333 solid
-  
+
   .item:not(:first-child)
-    margin-top 1px  
+    margin-top 1px
+
+.button-action
+  background-color #535453
+  color #ffffff
+  border 3px solid #ffffff
+  font-size 1.2rem
