@@ -6,7 +6,7 @@ Template.Shots.events({
   'click .cancel': function() {
     let gameId = FlowRouter.getParam('_id');
     Games.update({_id: gameId},{$set: {
-        started: true
+        alreadyStarted: true
       }
     });
   }
@@ -28,7 +28,7 @@ Template.Shots.onCreated(function(){
   this.subscribe('game', gameId, () => {
     this.autorun(()=> {
       let game = Games.findOne();
-      if (game && game.started) {
+      if (game && game.alreadyStarted) {
         FlowRouter.go('friendsList');
       }
     });

@@ -232,6 +232,7 @@ function isTimer(seconds) {
         typingTimer = setInterval(() => {
             if (time <= 0) {
                 clearInterval(typingTimer);
+                goToResult();
             } else {
                 time -= 1;
                 let timePad = (time < 10) ? ("0" + time) : time; // zero padded
@@ -241,6 +242,19 @@ function isTimer(seconds) {
     } else if (one == "0:00") {return false;}
     return true;
 }
+
+/**
+ * [goToResult get result of game and redirect to right path]
+ */
+function goToResult() {
+    let gameId = FlowRouter.getParam('_id');
+    if (true) {
+        FlowRouter.go('winner', {gameId: gameId})
+    } else {
+        FlowRouter.go('loser', {gameId: gameId})
+    }
+}
+
 
 /**
  * Not using calculateWPM yet
