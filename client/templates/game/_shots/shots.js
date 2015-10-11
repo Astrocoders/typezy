@@ -17,6 +17,13 @@ Template.Shots.events({
 /*****************************************************************************/
 
 Template.Shots.helpers({
+  oponentPoints: function(){
+    return getPlayerPoints('oponent');
+  },
+
+  youPoints: function(){
+    return getPlayerPoints('you');
+  }
 });
 
 /*****************************************************************************/
@@ -40,3 +47,23 @@ Template.Shots.onRendered(function(){
 
 Template.Shots.onDestroyed(function(){
 });
+
+
+function getPlayerPoints(cond){
+  let game = Games.findOne();
+
+  if(game){
+    let points = 0;
+    game.players.forEach(function(player, i){
+      let statement = cond === 'you' ? player._id === Meteor.userId() :
+                      player._id !== Meteor.userId();
+      if(statement){
+        points = player.points;
+      }
+    });
+
+    return 100 - points; 
+  } else {
+    return 100;
+  }  
+}

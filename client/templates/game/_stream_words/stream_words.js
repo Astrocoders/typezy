@@ -200,10 +200,13 @@ function submitWord(word) {
         current.classList.remove("current-word");
         current.classList.add("correct-word-c");
         wordData.correct += 1;
+        changeScore(1);
+
     } else {
         current.classList.remove("current-word", "incorrect-word-bg");
         current.classList.add("incorrect-word-c");
         wordData.incorrect += 1;
+        changeScore(-1);
     }
     // update wordData
     wordData.total = wordData.correct + wordData.incorrect;
@@ -302,9 +305,27 @@ function typingTest(e) {
                 $("#typebox")[0].value = ""; // clear typebox after each word
             }
             wordData.typed += 1; // count each valid character typed
-        }else {
-            // Display typing test results.
-            // calculateWPM(wordData);
         }
     }
+}
+
+function changeScore(inc){
+  let game = Games.findOne();
+
+  if(game){
+    let index;
+
+    game.players.forEach(function(player, i){
+      if(player._id === Meteor.userId()) index = i;
+    });
+
+    if(index){
+      let $mod = {};
+      $mod[`players.${index}.points`] = inc;
+
+      Games.update(game._id, {
+        $inc: $mod
+      });
+    }
+  }
 }

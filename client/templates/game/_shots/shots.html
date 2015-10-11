@@ -1,7 +1,7 @@
 <template name="Shots">
   <article class="shots">
   <div class="shot right-space oponent">
-    {{> ShotSvg}}
+    {{> ShotSvg points=youPoints}}
     <p class="text-center">Guilherme</p>
     <div class="points">
       <div class="point">
@@ -16,8 +16,8 @@
     </div>
   </div>
   <div class="shot left-space you">
-    {{> ShotSvg}}
-    <p class="text-center">Gabriel</p>
+    {{> ShotSvg points=oponentPoints}}
+    <p class="text-center">You</p>
     <div class="points">
       <div class="point">
         {{> ShotSvg}}
