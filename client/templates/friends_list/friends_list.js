@@ -7,7 +7,6 @@ Template.FriendsList.events({
   'click .item-avatar': function() {
     let opponent = this;
     let me = Meteor.user();
-    console.log(opponent, me);
     Games.insert({
       createdAt: new Date(),
       rounds: 0,

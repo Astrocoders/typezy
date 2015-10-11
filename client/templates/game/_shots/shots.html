@@ -5,13 +5,13 @@
     <p class="text-center">Guilherme</p>
     <div class="points">
       <div class="point">
-        {{> ShotSvg}}
+        {{> ShotSvg points=($.Session.get 'you40Round')}}
       </div>
       <div class="point">
-        {{> ShotSvg}}
+        {{> ShotSvg points=($.Session.get 'you20Round')}}
       </div>
       <div class="point">
-        {{> ShotSvg}}
+        {{> ShotSvg points=($.Session.get 'youFinalRound')}}
       </div>
     </div>
   </div>
@@ -20,13 +20,13 @@
     <p class="text-center">You</p>
     <div class="points">
       <div class="point">
-        {{> ShotSvg}}
+        {{> ShotSvg points=($.Session.get 'oponent40Round')}}
       </div>
       <div class="point">
-        {{> ShotSvg}}
+        {{> ShotSvg points=($.Session.get 'oponent40Round')}}
       </div>
       <div class="point">
-        {{> ShotSvg}}
+        {{> ShotSvg points=($.Session.get 'oponent40Round')}}
       </div>
     </div>
   </div>
