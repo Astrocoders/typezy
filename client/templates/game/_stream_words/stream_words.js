@@ -33,6 +33,7 @@ Template.StreamWords.onRendered(function(){
 });
 
 Template.StreamWords.onDestroyed(function(){
+  clearInterval(typingTimer);
 });
 
 
@@ -228,7 +229,7 @@ function isTimer(seconds) {
     // only set timer once
     let one = $("#timer")[0].innerHTML;
     if (one == "1:00") {
-        let typingTimer = setInterval(() => {
+        typingTimer = setInterval(() => {
             if (time <= 0) {
                 clearInterval(typingTimer);
             } else {
