@@ -20,7 +20,7 @@ Template.FriendsList.events({
           points: 0
         }
       ],
-      started: false
+      alreadyStarted: false
     });
   }
 });
@@ -67,7 +67,7 @@ Template.FriendsList.onCreated(function(){
     this.autorun(() => {
       var game = Games.findOne();
       console.log(game);
-      if (game && !game.started) {
+      if (game && !game.alreadyStarted) {
         FlowRouter.go('game', {_id: game._id});
       }
     });

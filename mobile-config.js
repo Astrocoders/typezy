@@ -17,7 +17,7 @@ App.setPreference('hideKeyboardAccessoryBar', true);
 App.setPreference('ShowSplashScreenSpinner', false);
 App.setPreference('StatusBarOverlaysWebView', 'false');
 App.setPreference('StatusBarStyle', 'lightcontent');
-App.setPreference('StatusBarBackgroundColor', '#000000');
+App.setPreference('StatusBarBackgroundColor', '#535453');
 App.setPreference('android-targetSdkVersion', '22');
 App.setPreference('android-minSdkVersion', '19');
 // // Pass preferences for a particular PhoneGap/Cordova plugin

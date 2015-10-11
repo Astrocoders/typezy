@@ -2,35 +2,12 @@
   <article class="shots">
   <div class="shot right-space oponent">
     {{> ShotSvg points=youPoints}}
-    <p class="text-center">Guilherme</p>
-    <div class="points">
-      <div class="point">
-        {{> ShotSvg points=($.Session.get 'you40Round')}}
-      </div>
-      <div class="point">
-        {{> ShotSvg points=($.Session.get 'you20Round')}}
-      </div>
-      <div class="point">
-        {{> ShotSvg points=($.Session.get 'youFinalRound')}}
-      </div>
-    </div>
+    <p class="text-center">Opponent</p>
   </div>
   <div class="shot left-space you">
     {{> ShotSvg points=oponentPoints}}
     <p class="text-center">You</p>
-    <div class="points">
-      <div class="point">
-        {{> ShotSvg points=($.Session.get 'oponent40Round')}}
-      </div>
-      <div class="point">
-        {{> ShotSvg points=($.Session.get 'oponent40Round')}}
-      </div>
-      <div class="point">
-        {{> ShotSvg points=($.Session.get 'oponent40Round')}}
-      </div>
-    </div>
   </div>
   </article>
-  <button class="cancel">CANCEL</button>
 </template>
 

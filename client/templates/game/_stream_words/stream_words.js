@@ -222,24 +222,31 @@ function isTimer(seconds) {
         typingTimer = setInterval(() => {
             if (time <= 0) {
                 clearInterval(typingTimer);
-                  Session.set('youFinalRound', App.getPlayerPoints('you'));
-                  Session.set('oponentFinalRound', App.getPlayerPoints('oponent'));                
+                goToResult();
             } else {
                 time -= 1;
                 let timePad = (time < 10) ? ("0" + time) : time; // zero padded
                 $("#timer")[0].innerHTML = `0:${timePad}`;
-
-                if(time === 40) {
-                  Session.set('you40Round', App.getPlayerPoints('you'));
-                  Session.set('oponent40Round', App.getPlayerPoints('oponent'));
-                } else if(time === 20){
-                  Session.set('you20Round', App.getPlayerPoints('you'));
-                  Session.set('oponent20Round', App.getPlayerPoints('oponent'));                  
-                }
             }
         }, 1000);
     } else if (one == "0:00") {return false;}
     return true;
+}
+
+/**
+ * [goToResult get result of game and redirect to right path]
+ */
+function goToResult() {
+    let gameId = FlowRouter.getParam('_id');
+    let game = Games.findOne({});
+    let players = game.players;
+    let winner = _.sortBy(players, 'points').reverse()[0];
+
+    if (winner._id === Meteor.userId()) {
+        FlowRouter.go('winner', {gameId: gameId})
+    } else {
+        FlowRouter.go('loser', {gameId: gameId})
+    }
 }
 
 function typingTest(e) {

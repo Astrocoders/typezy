@@ -5,7 +5,7 @@ App.updateUserLocation = function(){
       let coords = Geolocation.latLng({
         enableHighAccuracy: false
       });
-      
+
       if(coords){
         Meteor.users.update(Meteor.userId(), {$set: {
           location: {
@@ -17,7 +17,7 @@ App.updateUserLocation = function(){
 
       if(coords || !_.isEmpty(Geolocation.error())) c.stop();
     });
-  }  
+  }
 }
 
 App.Keyboard = {};
@@ -25,12 +25,13 @@ App.Keyboard = {};
 App.Keyboard.show = function(){
   if(Meteor.isCordova){
     cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    cordova.plugins.Keyboard.show();    
+    cordova.plugins.Keyboard.show();
   }
 }
 
 App.getPlayerPoints = function(cond){
   let game = Games.findOne();
+  let MULTIPLIER = 3;
 
   if(game){
     let points = 0;
@@ -42,8 +43,8 @@ App.getPlayerPoints = function(cond){
       }
     });
 
-    return 100 - points; 
+    return 100 - points * MULTIPLIER;
   } else {
     return 100;
-  }  
+  }
 }
