@@ -292,8 +292,8 @@ function changeScore(inc){
 
       $mod[`players.${index}.points`] = inc;
       query[`players.${index}.points`] = {
-        $gt: 0,
-        $lt: 100
+        $gte: 0,
+        $lte: 100
       };
 
       if(Games.findOne(query))
