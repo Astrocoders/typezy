@@ -39,3 +39,4 @@ accounts-password
 astrocoders:geolocation
 
 digilord:faker@=1.0.6
+raix:handlebar-helpers
