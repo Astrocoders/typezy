@@ -1,14 +1,28 @@
-.item-avatar
+.header
   padding 20px
+  text-align center
+
+.item-avatar
+  padding 20px 0 20px 0
   width 100%
-  font-size 2rem
+  font-size 1.5rem
   border-bottom: 1px #333 solid
+  display flex
+  flex-direction row
+  align-items center
+  justify-content space-around
   
   img 
-    max-width: 30%
+    flex-grow 1
+    width 20%
+    border-radius 50%
+    margin-left 10px
+ 
   
   div
-    width 70%
+    flex-grow 3
+    width 80%
+    margin-left 15px
 
 .item-avatar:not(:first-child)
   margin-top 1px

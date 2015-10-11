@@ -3,7 +3,7 @@
 /*****************************************************************************/
 
 Template.FriendsList.events({
-  'click .item': function(){
+  'click .item-avatar': function(){
     FlowRouter.go('game', {_id: this._id});
   }
 });
