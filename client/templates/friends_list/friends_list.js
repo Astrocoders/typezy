@@ -14,7 +14,7 @@ Template.FriendsList.events({
 
 Template.FriendsList.helpers({
   nearbyUsers: function(){
-    var userId = Meteor.userId();
+    let userId = Meteor.userId();
 
     return Meteor.users.find({
       _id: {
@@ -31,10 +31,10 @@ Template.FriendsList.helpers({
 Template.FriendsList.onCreated(function(){
   App.updateUserLocation();
   this.autorun((c) => {
-    var coords = Geolocation.latLng({
+    let coords = Geolocation.latLng({
       enableHighAccuracy: false
     });
-    
+
     if(coords){
       this.subscribe('nearbyUsers', coords);
     }
