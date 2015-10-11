@@ -178,10 +178,8 @@ let wordData = {
 
 function checkWord(word) {
     let wlen = word.value.length;
-    // how much we have of the current word.
     let current = $(".current-word")[0];
     let currentSubstring = current.innerHTML.substring(0, wlen);
-    // check if we have any typing errors
     if (word.value.trim().toLowerCase() != currentSubstring.toLowerCase()) {
         current.classList.add("incorrect-word-bg");
         return false;
@@ -192,8 +190,6 @@ function checkWord(word) {
 }
 
 function submitWord(word) {
-    // update current-word and
-    // keep track of correct & incorrect words
     let current = $(".current-word")[0];
     console.log('this is the current word', current);
     if (checkWord(word)) {
@@ -201,22 +197,17 @@ function submitWord(word) {
         current.classList.add("correct-word-c");
         wordData.correct += 1;
         changeScore(1);
-
     } else {
         current.classList.remove("current-word", "incorrect-word-bg");
         current.classList.add("incorrect-word-c");
         wordData.incorrect += 1;
         changeScore(-1);
     }
-    // update wordData
     wordData.total = wordData.correct + wordData.incorrect;
-
-    // make the next word the new current-word.
     current.nextSibling && current.nextSibling.classList.add("current-word");
 }
 
 function clearLine() {
-    // remove past words once you get to the next line
     let wordSection = $("#word-section")[0];
     let hasCurrent = $(".current-word")[0];
     if (!hasCurrent) {
@@ -225,11 +216,7 @@ function clearLine() {
 }
 
 function isTimer(seconds) {
-    // BUG: page refresh with keyboard triggers onkeyup and starts timer
-    // Use restart button to reset timer
-
     let time = seconds;
-    // only set timer once
     let one = $("#timer")[0].innerHTML;
     if (one == "1:00") {
         typingTimer = setInterval(() => {
@@ -245,39 +232,6 @@ function isTimer(seconds) {
     return true;
 }
 
-/**
- * Not using calculateWPM yet
- */
-// function calculateWPM(data) {
-//     let {seconds, correct, incorrect, total, typed} = data;
-//     let min = (seconds / 60);
-//     let wpm = Math.ceil((typed / 5) - (incorrect) / min);
-//     let accuracy = Math.ceil((correct / total) * 100);
-
-//     if (wpm < 0) {wpm = 0;}     // prevent negative wpm from incorrect words
-
-//     // template strings are pretty cool
-//     let results = `<ul id="results">
-//         <li>WPM: <span class="wpm-value">${wpm}</span></li>
-//         <li>Accuracy: <span class="wpm-value">${accuracy}%</span></li>
-//         <li id="results-stats">
-//         Total Words: <span>${total}</span> |
-//         Correct Words: <span>${correct}</span> |
-//         Incorrect Words: <span>${incorrect}</span> |
-//         Characters Typed: <span>${typed}</span>
-//         </li>
-//         </ul>`;
-
-//     $("#word-section")[0].innerHTML = results;
-
-//     // color code accuracy
-//     let wpmClass = $("li:nth-child(2) .wpm-value")[0].classList;
-//     if (accuracy > 80) {wpmClass.add("correct-word-c");}
-//     else { wpmClass.add("incorrect-word-c");}
-
-//     console.log(wordData);
-// }
-
 function typingTest(e) {
     // Char:        Key Code:
     // <space>      32
@@ -286,19 +240,15 @@ function typingTest(e) {
     // [A-Z]        65-90
     // [' "]        222
 
-    // Get key code of current key pressed.
     e = e || window.event;
     let kcode = e.keyCode;
     let word = $("#typebox")[0];
 
-    // check if empty (starts with space)
     if (word.value.match(/^\s/g)) {
         word.value = "";
     } else {
-        // Only score when timer is on.
         if (isTimer(wordData.seconds)) {
             checkWord(word);    // checks for typing errors while you type
-            // <space> submits words
             if (kcode == 32) {
                 submitWord(word);  // keep track of correct / incorrect words
                 addWords(); //add words if not current available
