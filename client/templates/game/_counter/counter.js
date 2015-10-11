@@ -24,6 +24,7 @@ Template.Counter.onCreated(function(){
 });
 
 Template.Counter.onRendered(function(){
+  Counter.set(3);
   countingToStart();
 });
 

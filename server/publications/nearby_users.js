@@ -4,14 +4,14 @@ Meteor.publish('nearbyUsers', function(location){
       $ne: this.userId
     },
 
-    location: {
+    'profile.location': {
       $nearSphere: {
         $geometry: {
           type: 'Point',
           coordinates: [ location.lng, location.lat ]
         },
 
-        $maxDistance: 100
+        $maxDistance: 10000
       }
     }
   }, {
