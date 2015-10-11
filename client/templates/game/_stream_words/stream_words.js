@@ -178,10 +178,8 @@ let wordData = {
 
 function checkWord(word) {
     let wlen = word.value.length;
-    // how much we have of the current word.
     let current = $(".current-word")[0];
     let currentSubstring = current.innerHTML.substring(0, wlen);
-    // check if we have any typing errors
     if (word.value.trim().toLowerCase() != currentSubstring.toLowerCase()) {
         current.classList.add("incorrect-word-bg");
         return false;
@@ -192,29 +190,24 @@ function checkWord(word) {
 }
 
 function submitWord(word) {
-    // update current-word and
-    // keep track of correct & incorrect words
     let current = $(".current-word")[0];
     console.log('this is the current word', current);
     if (checkWord(word)) {
         current.classList.remove("current-word");
         current.classList.add("correct-word-c");
         wordData.correct += 1;
-
+        changeScore(1);
     } else {
         current.classList.remove("current-word", "incorrect-word-bg");
         current.classList.add("incorrect-word-c");
         wordData.incorrect += 1;
+        changeScore(-1);
     }
-    // update wordData
     wordData.total = wordData.correct + wordData.incorrect;
-
-    // make the next word the new current-word.
     current.nextSibling && current.nextSibling.classList.add("current-word");
 }
 
 function clearLine() {
-    // remove past words once you get to the next line
     let wordSection = $("#word-section")[0];
     let hasCurrent = $(".current-word")[0];
     if (!hasCurrent) {
@@ -223,21 +216,27 @@ function clearLine() {
 }
 
 function isTimer(seconds) {
-    // BUG: page refresh with keyboard triggers onkeyup and starts timer
-    // Use restart button to reset timer
-
     let time = seconds;
-    // only set timer once
     let one = $("#timer")[0].innerHTML;
     if (one == "1:00") {
         typingTimer = setInterval(() => {
             if (time <= 0) {
                 clearInterval(typingTimer);
                 goToResult();
+                  Session.set('youFinalRound', App.getPlayerPoints('you'));
+                  Session.set('oponentFinalRound', App.getPlayerPoints('oponent'));
             } else {
                 time -= 1;
                 let timePad = (time < 10) ? ("0" + time) : time; // zero padded
                 $("#timer")[0].innerHTML = `0:${timePad}`;
+
+                if(time === 40) {
+                  Session.set('you40Round', App.getPlayerPoints('you'));
+                  Session.set('oponent40Round', App.getPlayerPoints('oponent'));
+                } else if(time === 20){
+                  Session.set('you20Round', App.getPlayerPoints('you'));
+                  Session.set('oponent20Round', App.getPlayerPoints('oponent'));
+                }
             }
         }, 1000);
     } else if (one == "0:00") {return false;}
@@ -268,19 +267,15 @@ function typingTest(e) {
     // [A-Z]        65-90
     // [' "]        222
 
-    // Get key code of current key pressed.
     e = e || window.event;
     let kcode = e.keyCode;
     let word = $("#typebox")[0];
 
-    // check if empty (starts with space)
     if (word.value.match(/^\s/g)) {
         word.value = "";
     } else {
-        // Only score when timer is on.
         if (isTimer(wordData.seconds)) {
             checkWord(word);    // checks for typing errors while you type
-            // <space> submits words
             if (kcode == 32) {
                 submitWord(word);  // keep track of correct / incorrect words
                 addWords(); //add words if not current available
@@ -289,4 +284,25 @@ function typingTest(e) {
             wordData.typed += 1; // count each valid character typed
         }
     }
+}
+
+function changeScore(inc){
+  let game = Games.findOne();
+
+  if(game){
+    let index;
+
+    game.players.forEach(function(player, i){
+      if(player._id === Meteor.userId()) index = i;
+    });
+
+    if(index){
+      let $mod = {};
+      $mod[`players.${index}.points`] = inc;
+
+      Games.update(game._id, {
+        $inc: $mod
+      });
+    }
+  }
 }

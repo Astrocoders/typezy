@@ -1,7 +1,3 @@
-/*****************************************************************************/
-/* Shots: Event Handlers */
-/*****************************************************************************/
-
 Template.Shots.events({
   'click .cancel': function() {
     let gameId = FlowRouter.getParam('_id');
@@ -11,18 +7,15 @@ Template.Shots.events({
     });
   }
 });
-
-/*****************************************************************************/
-/* Shots: Helpers */
-/*****************************************************************************/
-
 Template.Shots.helpers({
+  oponentPoints: function(){
+    return App.getPlayerPoints('oponent');
+  },
+
+  youPoints: function(){
+    return App.getPlayerPoints('you');
+  }
 });
-
-/*****************************************************************************/
-/* Shots: Lifecycle Hooks */
-/*****************************************************************************/
-
 Template.Shots.onCreated(function(){
   let gameId = FlowRouter.getParam('_id');
   this.subscribe('game', gameId, () => {
@@ -33,10 +26,4 @@ Template.Shots.onCreated(function(){
       }
     });
   });
-});
-
-Template.Shots.onRendered(function(){
-});
-
-Template.Shots.onDestroyed(function(){
 });
