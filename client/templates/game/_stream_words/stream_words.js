@@ -4,7 +4,6 @@
 
 Template.StreamWords.events({
   'keydown #typebox': function(event) {
-    console.log(event);
     typingTest(event);
   },
   'focusout #typebox': function() {
@@ -29,6 +28,7 @@ Template.StreamWords.onCreated(function(){
 Template.StreamWords.onRendered(function(){
   addWords();
   $('#typebox').focus();
+  App.Keyboard.show();
   typingTest();
 });
 
@@ -181,7 +181,7 @@ function checkWord(word) {
     let current = $(".current-word")[0];
     let currentSubstring = current.innerHTML.substring(0, wlen);
     // check if we have any typing errors
-    if (word.value.trim() != currentSubstring) {
+    if (word.value.trim().toLowerCase() != currentSubstring.toLowerCase()) {
         current.classList.add("incorrect-word-bg");
         return false;
     } else {
