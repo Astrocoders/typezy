@@ -42,7 +42,7 @@ App.getPlayerPoints = function(cond){
       }
     });
 
-    return 100 - points; 
+    return 100 - points * 3; 
   } else {
     return 100;
   }  
