@@ -132,9 +132,9 @@ function checkWord(word) {
     let wlen = word.value.length;
     // how much we have of the current word.
     let current = $(".current-word")[0];
-    let currentSubstring = current.innerHTML.substring(0, wlen);
+    let currentSubstring = current.innerHTML.substring(0, wlen).toLowerCase();
     // check if we have any typing errors
-    if (word.value.trim() != currentSubstring) {
+    if (word.value.trim().toLowerCase() != currentSubstring) {
         current.classList.add("incorrect-word-bg");
         return false;
     } else {
