@@ -4,7 +4,7 @@ let isGeolocLoading = new ReactiveVar(true);
 /*****************************************************************************/
 
 Template.FriendsList.events({
-  'click .start-game': function() {
+  'click .item-avatar': function() {
     let opponent = this;
     let me = Meteor.user();
     console.log(opponent, me);
