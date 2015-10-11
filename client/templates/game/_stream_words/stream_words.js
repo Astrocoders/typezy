@@ -142,7 +142,6 @@ function addWords() {
         wordSection.innerHTML += wordSpan;
     }
     // mark first word as current-word
-    console.log('first child', wordSection.firstChild);
     wordSection.firstChild.classList.add("current-word");
 
     // mark last word with magic-box
@@ -191,7 +190,6 @@ function checkWord(word) {
 
 function submitWord(word) {
     let current = $(".current-word")[0];
-    console.log('this is the current word', current);
     if (checkWord(word)) {
         current.classList.remove("current-word");
         current.classList.add("correct-word-c");
@@ -288,11 +286,20 @@ function changeScore(inc){
 
     if(index){
       let $mod = {};
-      $mod[`players.${index}.points`] = inc;
+      let query = {
+        _id: game._id
+      };
 
-      Games.update(game._id, {
-        $inc: $mod
-      });
+      $mod[`players.${index}.points`] = inc;
+      query[`players.${index}.points`] = {
+        $gt: 0,
+        $lt: 100
+      };
+
+      if(Games.findOne(query))
+        Games.update(game._id, {
+          $inc: $mod
+        });
     }
   }
 }
