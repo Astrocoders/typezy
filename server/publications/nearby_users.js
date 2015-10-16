@@ -11,7 +11,7 @@ Meteor.publish('nearbyUsers', function(location){
           coordinates: [ location.lng, location.lat ]
         },
 
-        $maxDistance: 10000
+        $maxDistance: 1000000000000000000000000000000000000000
       }
     }
   }, {

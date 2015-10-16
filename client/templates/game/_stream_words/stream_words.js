@@ -36,12 +36,6 @@ Template.StreamWords.onDestroyed(function(){
   clearInterval(typingTimer);
 });
 
-
-function fillPoints(player, round) {
-  let shotToFill = $('.' + player).find('path')[round];
-  $(shotToFill).css('fill', 'white');
-}
-
 // Sorted list of the 500 most common English words.
 let wordList = [
     "the", "name", "of", "very", "to", "through", "and", "just", "a",
@@ -198,10 +192,8 @@ function submitWord(word) {
     } else {
         current.classList.remove("current-word", "incorrect-word-bg");
         current.classList.add("incorrect-word-c");
-        wordData.incorrect += 1;
-        changeScore(-1);
     }
-    wordData.total = wordData.correct + wordData.incorrect;
+    wordData.total = wordData.correct;
     current.nextSibling && current.nextSibling.classList.add("current-word");
 }
 
@@ -276,30 +268,18 @@ function typingTest(e) {
 
 function changeScore(inc){
   let game = Games.findOne();
+    if(game){
+        let index;
+        let $mod = {};
 
-  if(game){
-    let index;
+        game.players.forEach(function(player, i){
+          if(player._id === Meteor.userId()) index = i;
+        });
 
-    game.players.forEach(function(player, i){
-      if(player._id === Meteor.userId()) index = i;
-    });
+        $mod[`players.${index}.points`] = inc;
 
-    if(index){
-      let $mod = {};
-      let query = {
-        _id: game._id
-      };
-
-      $mod[`players.${index}.points`] = inc;
-      query[`players.${index}.points`] = {
-        $gte: 0,
-        $lte: 100
-      };
-
-      if(Games.findOne(query))
         Games.update(game._id, {
-          $inc: $mod
+            $inc: $mod
         });
     }
-  }
 }

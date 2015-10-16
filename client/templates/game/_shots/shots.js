@@ -18,12 +18,5 @@ Template.Shots.helpers({
 });
 Template.Shots.onCreated(function(){
   let gameId = FlowRouter.getParam('_id');
-  this.subscribe('game', gameId, () => {
-    this.autorun(()=> {
-      let game = Games.findOne();
-      if (game && game.alreadyStarted) {
-        FlowRouter.go('friendsList');
-      }
-    });
-  });
+  this.subscribe('game', gameId);
 });
