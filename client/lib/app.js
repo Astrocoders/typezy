@@ -8,7 +8,7 @@ App.updateUserLocation = function(){
 
       if(coords){
         Meteor.users.update(Meteor.userId(), {$set: {
-          location: {
+          'profile.location': {
             type: 'Point',
             coordinates: [ coords.lng, coords.lat ]
           }
