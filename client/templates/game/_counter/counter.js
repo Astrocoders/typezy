@@ -35,7 +35,7 @@ Template.Counter.onDestroyed(function(){
 let countingToStart = function() {
   Meteor.setTimeout(function() {
     let counter = Counter.get();
-    if (counter >= 1) {
+    if (counter > 1) {
       Counter.set(counter - 1);
       countingToStart();
     } else {

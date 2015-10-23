@@ -275,7 +275,7 @@ function playerHasCeilPoints(){
   if(Games.find().count()){
     return !!Games.findOne({
       'players.points': {
-        $gte: 100
+        $gte: Math.floor(100/MULTIPLIER)
       }
     });
   } else {

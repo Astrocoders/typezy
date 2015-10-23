@@ -1,3 +1,5 @@
+MULTIPLIER = 3;
+
 App = {};
 App.updateUserLocation = function(){
   if(Meteor.user()){
@@ -31,7 +33,6 @@ App.Keyboard.show = function(){
 
 App.getPlayerPoints = function(cond){
   let game = Games.findOne();
-  let MULTIPLIER = 3;
 
   if(game){
     let points = 0;
