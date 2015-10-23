@@ -33,7 +33,6 @@ Template.StreamWords.onRendered(function(){
 });
 
 Template.StreamWords.onDestroyed(function(){
-  clearInterval(typingTimer);
 });
 
 // Sorted list of the 500 most common English words.
@@ -205,24 +204,6 @@ function clearLine() {
     }
 }
 
-function isTimer(seconds) {
-    let time = seconds;
-    let one = $("#timer")[0].innerHTML;
-    if (one == "1:00") {
-        typingTimer = setInterval(() => {
-            if (time <= 0) {
-                clearInterval(typingTimer);
-                goToResult();
-            } else {
-                time -= 1;
-                let timePad = (time < 10) ? ("0" + time) : time; // zero padded
-                $("#timer")[0].innerHTML = `0:${timePad}`;
-            }
-        }, 1000);
-    } else if (one == "0:00") {return false;}
-    return true;
-}
-
 /**
  * [goToResult get result of game and redirect to right path]
  */
@@ -254,7 +235,7 @@ function typingTest(e) {
     if (word.value.match(/^\s/g)) {
         word.value = "";
     } else {
-        if (isTimer(wordData.seconds)) {
+        if (!playerHasCeilPoints()) {
             checkWord(word);    // checks for typing errors while you type
             if (kcode == 32) {
                 submitWord(word);  // keep track of correct / incorrect words
@@ -262,6 +243,8 @@ function typingTest(e) {
                 $("#typebox")[0].value = ""; // clear typebox after each word
             }
             wordData.typed += 1; // count each valid character typed
+        } else {
+          goToResult();
         }
     }
 }
@@ -282,4 +265,20 @@ function changeScore(inc){
             $inc: $mod
         });
     }
+}
+
+/**
+ * Check if some player has reached 100 points
+ * @return {Boolean}
+ */
+function playerHasCeilPoints(){
+  if(Games.find().count()){
+    return !!Games.findOne({
+      'players.points': {
+        $gte: 100
+      }
+    });
+  } else {
+    return false;
+  }
 }
