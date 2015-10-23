@@ -41,3 +41,6 @@ astrocoders:geolocation
 digilord:faker@=1.0.6
 raix:handlebar-helpers
 astrocoders:accounts-fb-hook
+
+# App
+app:nearby-list
