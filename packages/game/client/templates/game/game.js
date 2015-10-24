@@ -3,6 +3,10 @@
 /*****************************************************************************/
 
 Template.Game.events({
+  'click .cancel': function() {
+    let gameId = FlowRouter.getParam('_id');
+    Game.setAsEnded(gameId);
+  }
 });
 
 /*****************************************************************************/
@@ -12,6 +16,14 @@ Template.Game.events({
 Template.Game.helpers({
   isCounting: function() {
     return Session.get('counting');
+  },
+
+  oponentPoints: function(){
+    return Game.getPlayerPoints('oponent');
+  },
+
+  youPoints: function(){
+    return Game.getPlayerPoints('you');
   }
 });
 
