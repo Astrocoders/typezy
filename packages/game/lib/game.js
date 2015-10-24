@@ -1,3 +1,5 @@
+MULTIPLIER = 3;
+
 Game = {};
 
 let callbacks = {
@@ -122,9 +124,46 @@ function userHasUnfinishedGame(){
   });
 }
 
+/**
+ * Set a game as ended
+ * @param {String} gameId MongoId
+ */
+function setGameAsEnded(gameId){
+  return Games.update({_id: gameId}, {$set: {
+      finished: true
+    }
+  });
+}
+
+/**
+ * Get player points
+ * @param  {String} cond Must be 'you' or 'opponent'
+ * @return {Integer}      Points
+ */
+function getPlayerPoints(cond){
+  let game = Games.findOne();
+
+  if(game){
+    let points = 0;
+    game.players.forEach(function(player){
+      let statement = cond === 'you' ? player._id === Meteor.userId() :
+                      player._id !== Meteor.userId();
+      if(statement){
+        points = player.points;
+      }
+    });
+
+    return 100 - points * MULTIPLIER;
+  } else {
+    return 100;
+  }
+}
+
 Game.playerHasCeilPoints          = playerHasCeilPoints;
 Game.changeCurPlayerScore         = changeScore;
 Game.onEvent                      = onEvent;
 Game.trigger                      = trigger;
 Game.createNewGame                = createNewGame;
 Game.redirUserOnUnfinishedGame    = userHasUnfinishedGame;
+Game.setAsEnded                   = setGameAsEnded;
+Game.getPlayerPoints              = getPlayerPoints;

@@ -1,20 +1,17 @@
 Template.Shots.events({
   'click .cancel': function() {
     let gameId = FlowRouter.getParam('_id');
-    Games.update({_id: gameId}, {$set: {
-        alreadyStarted: true
-      }
-    });
+    Game.setAsEnded(gameId);
   }
 });
 
 Template.Shots.helpers({
   oponentPoints: function(){
-    return App.getPlayerPoints('oponent');
+    return Game.getPlayerPoints('oponent');
   },
 
   youPoints: function(){
-    return App.getPlayerPoints('you');
+    return Game.getPlayerPoints('you');
   }
 });
 

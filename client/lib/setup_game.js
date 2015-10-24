@@ -7,7 +7,7 @@ function goToResult() {
     let players = game.players;
     let winner = _.sortBy(players, 'points').reverse()[0];
 
-    setGameAsEnded(gameId);
+    Game.setAsEnded(gameId);
 
     if (winner._id === Meteor.userId()) {
         FlowRouter.go(`/winner/${gameId}`);
@@ -15,14 +15,6 @@ function goToResult() {
         FlowRouter.go(`/loser/${gameId}`);
     }
 }
-
-function setGameAsEnded(gameId){
-  return Games.update({_id: gameId}, {$set: {
-      finished: true
-    }
-  });
-}
-
 
 StreamWordsConfig.onEvent('checkStop', Game.playerHasCeilPoints);
 StreamWordsConfig.onEvent('onStop', goToResult);
