@@ -1,7 +1,8 @@
 Countdown = {};
 
 let callbacks = {
-  onEnd: function(){}
+  onEnd: function(){},
+  onLoop: function(){}
 };
 
 let counter;
@@ -32,7 +33,7 @@ function trigger(name, ...args){
  * @return {Boolean}
  */
 function start(seconds){
-  counter = seconds || 3;
+  counter = seconds - 1 || 3;
   loop();
   return true;
 }
