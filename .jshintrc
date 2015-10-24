@@ -115,6 +115,7 @@
     "mixpanel",
     "toastr",
     "cordova",
+    "BlazeLayout",
 
     "Games",
     "Game",

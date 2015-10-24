@@ -14,10 +14,6 @@ Template.Game.events({
 /*****************************************************************************/
 
 Template.Game.helpers({
-  isCounting: function() {
-    return Session.get('counting');
-  },
-
   oponentPoints: function(){
     return Game.getPlayerPoints('oponent');
   },

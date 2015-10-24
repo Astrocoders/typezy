@@ -1,8 +1,4 @@
 <template name="Game">
-  {{#if isCounting}}
-    {{> Counter}}
-  {{else}}
-    {{> StreamWords}}
-    {{> Shots oponentPoints=oponentPoints youPoints=youPoints}}
-  {{/if}}
+  {{> StreamWords}}
+  {{> Shots oponentPoints=oponentPoints youPoints=youPoints}}
 </template>

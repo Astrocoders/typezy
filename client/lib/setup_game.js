@@ -22,7 +22,9 @@ StreamWordsConfig.onEvent('onCorrectType', () => Game.changeCurPlayerScore(+1));
 
 Game.onEvent('onLooseAction', () => FlowRouter.go('friendsList'));
 Game.onEvent('onWinAction', () => FlowRouter.go('friendsList'));
-Game.redirUserOnUnfinishedGame();
 
-NearbyList.onEvent('onUserSelected', (playerTwo) =>
-    Game.createNewGame(Meteor.userId(), playerTwo._id) );
+NearbyList.onEvent('onUserSelected', (playerTwo) => {
+  let gameId = Game.createNewGame(Meteor.userId(), playerTwo._id);
+
+  Countdown.onEvent('onEnd', () => FlowRouter.go(`/game/${gameId}`));
+});

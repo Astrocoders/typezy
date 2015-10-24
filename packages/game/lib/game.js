@@ -111,19 +111,6 @@ function createNewGame(playerOneId, playerTwoId){
   });
 }
 
-function userHasUnfinishedGame(){
-  Meteor.subscribe('lastGame', () => {
-    Deps.autorun(() => {
-      let game = Games.findOne();
-      let alreadyPlaying = FlowRouter.getRouteName() === 'game';
-
-      if (game && !game.finished && !alreadyPlaying) {
-        FlowRouter.go('game', {_id: game._id});
-      }
-    });
-  });
-}
-
 /**
  * Set a game as ended
  * @param {String} gameId MongoId
@@ -164,6 +151,5 @@ Game.changeCurPlayerScore         = changeScore;
 Game.onEvent                      = onEvent;
 Game.trigger                      = trigger;
 Game.createNewGame                = createNewGame;
-Game.redirUserOnUnfinishedGame    = userHasUnfinishedGame;
 Game.setAsEnded                   = setGameAsEnded;
 Game.getPlayerPoints              = getPlayerPoints;
