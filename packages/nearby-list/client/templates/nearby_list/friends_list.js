@@ -5,23 +5,9 @@ let isGeolocLoading = new ReactiveVar(true);
 
 Template.FriendsList.events({
   'click .item-avatar': function() {
-    let opponent = this;
-    let me = Meteor.user();
-    Games.insert({
-      createdAt: new Date(),
-      rounds: 0,
-      players: [
-        {
-          _id: opponent._id,
-          points: 0
-        },
-        {
-          _id: me._id,
-          points: 0
-        }
-      ],
-      alreadyStarted: false
-    });
+    let selectedUser = this;
+
+    NearbyList.trigger('onUserSelected', selectedUser);
   }
 });
 
@@ -31,9 +17,9 @@ Template.FriendsList.events({
 
 Template.FriendsList.helpers({
   isGeolocLoading: function() {
-    console.log(isGeolocLoading.get());
     return isGeolocLoading.get();
   },
+
   nearbyUsers: function(){
     let userId = Meteor.userId();
 
@@ -50,8 +36,9 @@ Template.FriendsList.helpers({
 /*****************************************************************************/
 
 Template.FriendsList.onCreated(function(){
-  App.updateUserLocation();
-  this.autorun((c) => {
+  NearbyList.updateUserLocation();
+
+  this.autorun(() => {
     let coords = Geolocation.latLng({
       enableHighAccuracy: false
     });
@@ -62,14 +49,5 @@ Template.FriendsList.onCreated(function(){
         isGeolocLoading.set(false);
       });
     }
-  });
-  this.subscribe('lastGame', () => {
-    this.autorun(() => {
-      var game = Games.findOne();
-      console.log(game);
-      if (game && !game.alreadyStarted) {
-        FlowRouter.go('game', {_id: game._id});
-      }
-    });
   });
 });

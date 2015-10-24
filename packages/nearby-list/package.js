@@ -23,6 +23,7 @@ Package.onUse(function(api) {
   ]);
 
   api.addFiles([
+    'client/lib/nearby_list.js',
     'client/templates/nearby_list/friends_list.html',
     'client/templates/nearby_list/friends_list.js',
     'client/templates/nearby_list/friends_list.styl'
@@ -31,6 +32,8 @@ Package.onUse(function(api) {
   api.addFiles([
     'server/publications/nearby_users_publication.js'
   ], 'server');
+
+  api.export('NearbyList', 'client');
 });
 
 Package.onTest(function(api) {

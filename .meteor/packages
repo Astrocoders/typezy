@@ -44,3 +44,7 @@ astrocoders:accounts-fb-hook
 
 # App
 app:nearby-list
+app:game
+app:counter
+app:shots
+app:stream-words

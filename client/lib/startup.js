@@ -1,3 +1,3 @@
 Meteor.startup(function(){
-  App.updateUserLocation();
+  NearbyList.updateUserLocation();
 });
