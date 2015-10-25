@@ -9,6 +9,7 @@ app:shots@0.0.1
 app:stream-words@0.0.1
 astrocoders:accounts-fb-hook@0.0.1
 astrocoders:geolocation@1.1.0
+astrocoders:publish@0.0.1
 autoupdate@1.2.3
 babel-compiler@5.8.24_1
 babel-runtime@0.1.4

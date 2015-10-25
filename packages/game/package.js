@@ -17,6 +17,7 @@ Package.onUse(function(api) {
     'templating',
     'blaze',
     'reactive-var',
+    'astrocoders:publish',
     'app:stream-words',
     'app:shots',
     'app:counter'

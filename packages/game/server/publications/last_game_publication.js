@@ -1,9 +1,6 @@
-Meteor.publish('lastGame', function() {
-  if (this.userId) {
-    return Games.find({
-      'players._id': this.userId
-    }, {sort: {createdAt: -1}, limit: 1});
-  } else {
-    this.ready();
-  }
-});
+Games.publish('lastGame')
+  .ifSignedIn()
+  .query(function(userId){
+    return {'players._id': userId};
+  })
+  .lastest().one().apply();

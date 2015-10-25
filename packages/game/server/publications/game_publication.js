@@ -1,7 +1,1 @@
-Meteor.publish('game', function(gameId) {
-  if (this.userId) {
-    return Games.find({_id: gameId});
-  } else {
-    this.ready();
-  }
-});
+Games.publish('game').ifSignedIn().query((gameId) => { gameId }).apply();
