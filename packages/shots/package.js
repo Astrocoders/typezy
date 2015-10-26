@@ -32,5 +32,16 @@ Package.onTest(function(api) {
   api.use('ecmascript');
   api.use('tinytest');
   api.use('app:shots');
-  api.addFiles('shots-tests.js');
+  api.use([
+    'app:shots',
+    'meteor-platform',
+    'templating',
+    'blaze',
+    'ui'
+  ]);
+
+  api.addFiles([
+    'tests/mocks.js',
+    'tests/tests.js'
+  ], 'client');
 });
