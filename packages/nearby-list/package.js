@@ -18,6 +18,7 @@ Package.onUse(function(api) {
     'ui',
     'deps',
     'astrocoders:geolocation',
+    'astrocoders:publish',
     'stylus',
     'astrocoders:accounts-fb-hook'
   ]);
