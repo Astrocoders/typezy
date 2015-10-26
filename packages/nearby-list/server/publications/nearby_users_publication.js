@@ -21,16 +21,4 @@ AstroPublish.defineMethod({
   }
 });
 
-AstroPublish.defineMethod({
-  type: 'mongoRule',
-  name: 'getProfile',
-  fn: function(){
-    return {
-      fields: {
-        profile: 1
-      }
-    };
-  }
-});
-
-Meteor.users.publish('nearbyUsers').getNearbyUsers().getProfile().apply();
+Meteor.users.publish('nearbyUsers').getNearbyUsers().fields('profile').apply();
