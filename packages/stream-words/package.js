@@ -36,5 +36,9 @@ Package.onTest(function(api) {
   api.use('ecmascript');
   api.use('tinytest');
   api.use('app:stream-words');
-  api.addFiles('stream-words-tests.js');
+
+  api.addFiles([
+    'tests/events.js'
+  ], 'client');
+
 });
