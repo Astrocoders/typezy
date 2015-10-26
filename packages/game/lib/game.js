@@ -89,9 +89,9 @@ function onEvent(name, fn){
  * @param  {String} name [description]
  * @return {Any}      Return of callback
  */
-function trigger(name){
-  return callbacks[name]();
-}
+ function trigger(name, ...args){
+   return callbacks[name].apply(null, args);
+ }
 
 function createNewGame(playerOneId, playerTwoId){
   return Games.insert({
@@ -153,3 +153,4 @@ Game.trigger                      = trigger;
 Game.createNewGame                = createNewGame;
 Game.setAsEnded                   = setGameAsEnded;
 Game.getPlayerPoints              = getPlayerPoints;
+Game.getCurPlayerIndex            = getCurPlayerIndex;

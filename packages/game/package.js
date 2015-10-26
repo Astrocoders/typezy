@@ -63,5 +63,10 @@ Package.onTest(function(api) {
   api.use('ecmascript');
   api.use('tinytest');
   api.use('app:game');
-  api.addFiles('game-tests.js');
+
+  api.addFiles([
+    'tests/mocks.js',
+    'tests/events.js',
+    'tests/game.js'
+  ], 'client');
 });
