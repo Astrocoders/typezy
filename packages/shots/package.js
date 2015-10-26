@@ -34,7 +34,6 @@ Package.onTest(function(api) {
   api.use('app:shots');
   api.use([
     'app:shots',
-    'meteor-platform',
     'templating',
     'blaze',
     'ui'

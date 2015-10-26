@@ -16,7 +16,7 @@ Package.onUse(function(api) {
     'blaze',
     'templating',
     'ui',
-    'deps',
+    'tracker',
     'astrocoders:geolocation',
     'astrocoders:publish',
     'stylus',
@@ -42,7 +42,6 @@ Package.onTest(function(api) {
   api.use('tinytest');
   api.use([
     'app:nearby-list',
-    'mongo',
     'tracker',
     'templating',
     'blaze'

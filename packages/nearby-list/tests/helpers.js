@@ -6,7 +6,7 @@ Tinytest.addAsync(`FriendsList Helpers - isGeolocLoading - It should
   let onCreated = Template.FriendsList._callbacks.created[0];
   let templateContext = {
     autorun: Meteor.autorun,
-    subscribe: Meteor.subscribe
+    subscribe: function(){}
   };
 
   onCreated.call(templateContext);
