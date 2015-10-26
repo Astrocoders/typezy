@@ -44,10 +44,8 @@ Template.FriendsList.onCreated(function(){
     });
 
     if(coords){
-      console.log(coords);
-      this.subscribe('nearbyUsers', coords, () => {
-        this.isGeolocLoading.set(false);
-      });
+      this.isGeolocLoading.set(false);
+      this.subscribe('nearbyUsers', coords);
     }
   });
 });

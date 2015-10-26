@@ -12,7 +12,7 @@ Tinytest.addAsync(`FriendsList Helpers - isGeolocLoading - It should
   onCreated.call(templateContext);
 
   Meteor.setTimeout(() => {
-    test.isTrue(templateContext.isGeolocLoading.get());
+    test.isFalse(templateContext.isGeolocLoading.get());
     next();
   }, geoLocSecsToWait * 1000);
 });
