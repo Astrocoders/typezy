@@ -40,6 +40,16 @@ Package.onUse(function(api) {
 Package.onTest(function(api) {
   api.use('ecmascript');
   api.use('tinytest');
-  api.use('app:nearby-list');
-  api.addFiles('nearby-list-tests.js');
+  api.use([
+    'app:nearby-list',
+    'mongo',
+    'tracker',
+    'templating',
+    'blaze'
+  ]);
+
+  api.addFiles([
+    'tests/events.js',
+    'tests/helpers.js'
+  ], 'client');
 });

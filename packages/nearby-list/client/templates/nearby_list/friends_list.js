@@ -1,4 +1,3 @@
-let isGeolocLoading = new ReactiveVar(true);
 /*****************************************************************************/
 /* FriendsList: Event Handlers */
 /*****************************************************************************/
@@ -17,7 +16,7 @@ Template.FriendsList.events({
 
 Template.FriendsList.helpers({
   isGeolocLoading: function() {
-    return isGeolocLoading.get();
+    return Template.instance().isGeolocLoading.get();
   },
 
   nearbyUsers: function(){
@@ -37,6 +36,7 @@ Template.FriendsList.helpers({
 
 Template.FriendsList.onCreated(function(){
   NearbyList.updateUserLocation();
+  this.isGeolocLoading = new ReactiveVar(true);
 
   this.autorun(() => {
     let coords = Geolocation.latLng({
@@ -46,7 +46,7 @@ Template.FriendsList.onCreated(function(){
     if(coords){
       console.log(coords);
       this.subscribe('nearbyUsers', coords, () => {
-        isGeolocLoading.set(false);
+        this.isGeolocLoading.set(false);
       });
     }
   });
