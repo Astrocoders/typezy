@@ -49,3 +49,4 @@ app:counter
 app:shots
 app:stream-words
 astrocoders:publish
+astrocoders:subscribe-with-scroll
