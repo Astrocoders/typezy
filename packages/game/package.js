@@ -26,10 +26,10 @@ Package.onUse(function(api) {
   api.addFiles([
     'lib/games_collection.js',
     'lib/game.js',
-    'server/security.js'
   ]);
 
   api.addFiles([
+    'server/security.js',
     'server/publications/game_publication.js',
     'server/publications/last_game_publication.js'
   ], 'server');

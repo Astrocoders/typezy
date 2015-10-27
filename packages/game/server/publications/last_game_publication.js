@@ -3,4 +3,4 @@ Games.publish('lastGame')
   .query(function(userId){
     return {'players._id': userId};
   })
-  .lastest().one().apply();
+  .latest().one().apply();
