@@ -1,7 +1,13 @@
 AstroPublish.defineMethod({
   type: 'query',
   name: 'getNearbyUsers',
-  fn: function(location, userId){
+  fn: function(params, userId){
+    let {coords} = params;
+
+    if(_.isEmpty(_.compact(coords))){
+      return;
+    }
+
     return {
       _id: {
         $ne: userId
@@ -11,7 +17,7 @@ AstroPublish.defineMethod({
         $nearSphere: {
           $geometry: {
             type: 'Point',
-            coordinates: [ location.lng, location.lat ]
+            coordinates: [ coords.lng, coords.lat ]
           },
 
           $maxDistance: 1000000000000000000000000000000000000000
@@ -21,4 +27,12 @@ AstroPublish.defineMethod({
   }
 });
 
-Meteor.users.publish('nearbyUsers').getNearbyUsers().fields('profile').apply();
+Meteor.users.publish('nearbyUsers')
+  .getNearbyUsers()
+  .fields('profile')
+  .mongoRule((params) => {
+    return {
+      limit: params.limit
+    };
+  })
+  .apply();
