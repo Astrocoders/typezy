@@ -21,6 +21,10 @@
           No nearby users were found :/
         </div>
       {{/each}}
+      
+      {{#unless listHasEnded}}
+        <div class="item">Loading more users...</div>
+      {{/unless}}
     {{/if}}
   </div>
 </template>

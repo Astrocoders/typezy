@@ -19,6 +19,10 @@ Template.FriendsList.helpers({
     return Template.instance().isGeolocLoading.get();
   },
 
+  listHasEnded: function(){
+    return Template.instance().SubscribeWithScroll.hasEnded.get();
+  },
+
   nearbyUsers: function(){
     let userId = Meteor.userId();
 
@@ -35,17 +39,38 @@ Template.FriendsList.helpers({
 /*****************************************************************************/
 
 Template.FriendsList.onCreated(function(){
-  NearbyList.updateUserLocation();
   this.isGeolocLoading = new ReactiveVar(true);
+});
+
+Template.FriendsList.onRendered(function(){
+  NearbyList.updateUserLocation();
+
+  let coords = new ReactiveVar({});
+
+  this.SubscribeWithScroll = new SubscribeWithScroll({
+    pub: 'nearbyUsers',
+    limit: 5,
+    increment: 5,
+    template: this,
+    threshold: $('#__blaze-root'),
+    collection: Meteor.users
+  });
+
+  this.SubscribeWithScroll.params = function(){
+    return {
+      coords: coords.get() || {}
+    };
+  };
+
+  this.SubscribeWithScroll.run();
 
   this.autorun(() => {
-    let coords = Geolocation.latLng({
+    coords.set(Geolocation.latLng({
       enableHighAccuracy: false
-    });
+    }));
 
-    if(coords){
+    if(!_.isEmpty(coords.get())){
       this.isGeolocLoading.set(false);
-      this.subscribe('nearbyUsers', coords);
     }
   });
 });
