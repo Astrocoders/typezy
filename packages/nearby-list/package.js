@@ -17,9 +17,10 @@ Package.onUse(function(api) {
     'templating',
     'ui',
     'tracker',
+    'stylus',
     'astrocoders:geolocation',
     'astrocoders:publish',
-    'stylus',
+    'astrocoders:subscribe-with-scroll',
     'astrocoders:accounts-fb-hook'
   ]);
 
