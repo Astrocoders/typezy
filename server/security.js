@@ -1,2 +1,11 @@
-Meteor.users.permit(['insert', 'update']).apply();
-Games.permit(['insert', 'update']).apply();
+Security.defineMethod('ifIsCurrentUser', {
+  fetch: [],
+  transform: null,
+  deny: function(type, arg, userId, doc){
+    return userId !== doc._id;
+  }
+});
+
+Security.permit(['insert']).collections([Meteor.users]).apply();
+
+Meteor.users.permit(['update']).ifIsCurrentUser().apply();
