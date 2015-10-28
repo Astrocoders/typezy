@@ -21,6 +21,7 @@ App.setPreference('StatusBarStyle', 'lightcontent');
 App.setPreference('StatusBarBackgroundColor', '#535453');
 App.setPreference('android-targetSdkVersion', '22');
 App.setPreference('android-minSdkVersion', '19');
+App.setPreference('keyboardDisplayRequiresUserAction', false);
 
 // // // Pass preferences for a particular PhoneGap/Cordova plugin
 // App.configurePlugin('phonegap-facebook-plugin', {
@@ -28,3 +29,4 @@ App.setPreference('android-minSdkVersion', '19');
 //   APP_ID: '1674830279397877',
 //   API_KEY: '1c3116b03dffac23d5f1bfd065f570df'
 // });
+
