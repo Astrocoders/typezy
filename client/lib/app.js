@@ -49,3 +49,11 @@ App.getPlayerPoints = function(cond){
     return 100;
   }
 }
+
+App.updateGame = function() {
+  let gameId = FlowRouter.getParam('gameId');
+  Games.update({_id: gameId},{$set: {
+      alreadyStarted: true
+    }
+  });
+}

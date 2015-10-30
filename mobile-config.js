@@ -23,6 +23,27 @@ App.setPreference('android-targetSdkVersion', '22');
 App.setPreference('android-minSdkVersion', '19');
 App.setPreference('keyboardDisplayRequiresUserAction', false);
 
+// // Set up resources such as icons and launch screens.
+App.icons({
+  // Android
+  'android_ldpi': 'resources/icons/android/ldpi.png',
+  'android_mdpi': 'resources/icons/android/mdpi.png',
+  'android_hdpi': 'resources/icons/android/hdpi.png',
+  'android_xhdpi': 'resources/icons/android/xhdpi.png'
+});
+
+App.launchScreens({
+  // Android
+  'android_ldpi_portrait': 'resources/splash/android/drawable-port-ldpi-screen.png',
+  'android_ldpi_landscape': 'resources/splash/android/drawable-land-ldpi-screen.png',
+  'android_mdpi_portrait': 'resources/splash/android/drawable-port-mdpi-screen.png',
+  'android_mdpi_landscape': 'resources/splash/android/drawable-land-mdpi-screen.png',
+  'android_hdpi_portrait': 'resources/splash/android/drawable-port-hdpi-screen.png',
+  'android_hdpi_landscape': 'resources/splash/android/drawable-land-hdpi-screen.png',
+  'android_xhdpi_portrait': 'resources/splash/android/drawable-port-xhdpi-screen.png',
+  'android_xhdpi_landscape': 'resources/splash/android/drawable-land-xhdpi-screen.png'
+});
+
 // // // Pass preferences for a particular PhoneGap/Cordova plugin
 // App.configurePlugin('phonegap-facebook-plugin', {
 //   APP_NAME: 'Typezy',

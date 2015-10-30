@@ -13,9 +13,5 @@ Template.GameWinner.events({
 /*****************************************************************************/
 
 Template.GameWinner.onCreated(function(){
-  var gameId = FlowRouter.getParam('gameId');
-  Games.update({_id: gameId},{$set: {
-      alreadyStarted: true
-    }
-  });
+  App.updateGame();
 });
