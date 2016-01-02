@@ -3,50 +3,39 @@
  * https://github.com/facebook/react-native
  */
 'use strict';
-
-var React = require('react-native');
-var {
+let React = require('react-native');
+let {
   AppRegistry,
-  StyleSheet,
-  Text,
   View,
+  Navigator,
 } = React;
 
-var NativeTypezy = React.createClass({
-  render: function() {
+let SignInScreen = require('./app/screens/login.js');
+
+
+let NativeTypezy = React.createClass({
+  renderScene(route, nav){
+    switch(route.id){
+      case 'login':
+        return <SignInScreen navigator={nav}/>;
+    }
+  },
+
+  render(){
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+      <Navigator
+        initialRoute={{id: 'login'}}
+        renderScene={this.renderScene}
+        configureScene={(route) => {
+          if(route.sceneConfig){
+            return route.sceneConfig;
+          }
+
+          return Navigator.SceneConfigs.FloatFromRight;
+        }}
+      />
     );
   }
-});
-
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
 });
 
 AppRegistry.registerComponent('NativeTypezy', () => NativeTypezy);
