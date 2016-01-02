@@ -1,0 +1,13 @@
+{
+  "name": "NativeTypezy",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start"
+  },
+  "dependencies": {
+    "ddp-client": "^0.1.2",
+    "lodash": "^3.10.1",
+    "react-native": "^0.17.0"
+  }
+}
