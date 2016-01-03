@@ -26,7 +26,7 @@ let NativeTypezy = React.createClass({
         initialRoute={{id: 'login'}}
         renderScene={this.renderScene}
         configureScene={(route) => {
-          return Navigator.SceneConfigs.HorizontalSwipeJump;
+          return Navigator.SceneConfigs.FloatFromRight;
         }}
       />
     );

@@ -32,7 +32,7 @@ let styles = StyleSheet.create({
 
 let SignInScreen = React.createClass({
   loginBtnPress(){
-    this.props.navigator.replace({id: 'nearbyUsers'});
+    this.props.navigator.push({id: 'nearbyUsers'});
   },
 
   render(){
