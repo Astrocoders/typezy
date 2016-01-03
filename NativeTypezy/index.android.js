@@ -1,8 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
+
 let React = require('react-native');
 let {
   AppRegistry,
@@ -11,13 +8,15 @@ let {
 } = React;
 
 let SignInScreen = require('./app/screens/login.js');
-
+let NearbyUsersScreen = require('./app/screens/nearby_users.js');
 
 let NativeTypezy = React.createClass({
   renderScene(route, nav){
     switch(route.id){
       case 'login':
         return <SignInScreen navigator={nav}/>;
+      case 'nearbyUsers':
+        return <NearbyUsersScreen navigator={nav}/>;
     }
   },
 
@@ -27,11 +26,7 @@ let NativeTypezy = React.createClass({
         initialRoute={{id: 'login'}}
         renderScene={this.renderScene}
         configureScene={(route) => {
-          if(route.sceneConfig){
-            return route.sceneConfig;
-          }
-
-          return Navigator.SceneConfigs.FloatFromRight;
+          return Navigator.SceneConfigs.HorizontalSwipeJump;
         }}
       />
     );
