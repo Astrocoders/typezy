@@ -14,8 +14,6 @@ let {
 
 let styles = StyleSheet.create({
   fullbackground: {
-    flex: 1,
-    alignSelf: 'stretch',
     width: null,
     resizeMode: 'cover',
     position: 'absolute',
@@ -34,7 +32,7 @@ let styles = StyleSheet.create({
 
 let SignInScreen = React.createClass({
   loginBtnPress(){
-    Alert.alert('Stop!', 'This is really cool, do you wanna continue?');
+    this.props.navigator.replace({id: 'nearbyUsers'});
   },
 
   render(){
